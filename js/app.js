@@ -7,14 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         this.width = boardWidth;
         this.height = boardHeight;
-        this.cells = [];
 
         /** Building a board */
 
         this.board = document.getElementById('board');
         //console.log(board);
+        this.cells = [];
 
         this.createBoard = function () {
+
             this.board.style.width = (this.width * 10) + 'px';
             this.board.style.height = (this.height * 10) + 'px';
 
@@ -37,9 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         };
         //console.log(this.cells)
+
+        /** Pointing a given cell with the x and y coordinates */
+
+        this.position = function (x,y) {
+           let index = x + y * this.width;
+           return this.cells[index];
+        };
+
+
     }
 
     let game = new GameOfLife(10, 10);
     game.createBoard();
+    //console.log(game.position(1,1));
 
 });
