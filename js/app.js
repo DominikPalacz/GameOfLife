@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         this.width = boardWidth;
         this.height = boardHeight;
+        this.cells = [];
 
         this.board = document.getElementById('board');
         //console.log(board);
@@ -19,15 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = nrAllDiv; i > 0; i--) {
                 let div = document.createElement('div');
                 board.append(div);
+                this.cells.push(div);
             }
 
-        }
+        };
+
+        //console.log(this.cells)
 
     }
 
     let game = new GameOfLife(10, 10);
-
     game.createBoard();
-
 
 });
