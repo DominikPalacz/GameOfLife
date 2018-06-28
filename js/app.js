@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 //console.log('DOM fully loaded and parsed');
 
+    /** Creating a game management object */
+
     function GameOfLife(boardWidth, boardHeight) {
 
         this.width = boardWidth;
         this.height = boardHeight;
         this.cells = [];
+
+        /** Building a board */
 
         this.board = document.getElementById('board');
         //console.log(board);
@@ -23,10 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.cells.push(div);
             }
 
+            /**Reviving and killing cells*/
+
+            for (let i = 0; i < this.cells.length; i++) {
+                this.cells[i].addEventListener('click', function () {
+                    this.classList.toggle('live')
+                })
+            }
+
         };
-
         //console.log(this.cells)
-
     }
 
     let game = new GameOfLife(10, 10);
