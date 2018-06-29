@@ -64,6 +64,70 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setCellState(3, 3, 'live');
             this.setCellState(2, 3, 'live');
             this.setCellState(1, 2, 'live');
+        };
+
+        /** Generating the future state of the cell */
+
+        this.computeCellNextState = function (x, y) {
+
+            let live = 0;
+
+            if (this.position(x - 1, y + 1).classList.contains('live')) {
+                console.log('1');
+                live++;
+            }
+            if (this.position(x, y - 1).classList.contains('live')) {
+                console.log('2');
+                live++;
+            }
+            if (this.position(x + 1, y + 1).classList.contains('live')) {
+                console.log('3');
+                live++;
+            }
+
+            if (this.position(x - 1, y).classList.contains('live')) {
+                console.log('4');
+                live++;
+            }
+            if (this.position(x + 1, y).classList.contains('live')) {
+                console.log('5');
+                live++;
+            }
+
+            if (this.position(x - 1, y - 1).classList.contains('live')) {
+                console.log('6');
+                live++;
+            }
+            if (this.position(x, y + 1).classList.contains('live')) {
+                console.log('7');
+                live++;
+            }
+            if (this.position(x + 1, y - 1).classList.contains('live')) {
+                console.log('8');
+                live++;
+            }
+
+            console.warn(live);
+
+            if (this.position(x, y).classList.contains('live')) {
+
+                if (live === 2 || live === 3) {
+                    return 1
+                } else {
+                    return 0
+                }
+
+            } else {
+
+                if (live === 3) {
+                    return 1
+                } else {
+                    return 0
+                }
+
+            }
+
+
         }
 
 
@@ -73,5 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
     game.createBoard();
     //console.log(game.position(1,1));
     game.firstGlider();
+    //game.computeCellNextState(2, 2);
+    //console.log(game.computeCellNextState(1,1));
+    console.log(game.computeCellNextState(2, 2)); //dead
+    console.log(game.computeCellNextState(3, 3)); //live
 
 });
