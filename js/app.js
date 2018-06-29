@@ -152,7 +152,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
             return stateFutureBoard;
 
-        }
+        };
+
+        /** Displaying the new state of the table */
+
+        this.printNextGeneration = function () {
+
+            let nextDisplay = this.computeNextGeneration();
+
+            for (let i = 0; i < nextDisplay.length; i++) {
+
+                if (nextDisplay[i] === 0) {
+                    this.cells[i].classList.remove('live');
+                } else {
+                    this.cells[i].classList.add('live');
+                }
+
+            }
+
+            console.log(nextDisplay)
+
+        };
+
+        // test ;) Don't Worry, Be Happy
+        let playTest = document.getElementById('play');
+
+        playTest.addEventListener('click', function () {
+            //e.preventDefault();
+            console.log('click');
+            game.printNextGeneration()
+        })
 
 
     }
@@ -166,5 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //console.log(game.computeCellNextState(2, 2)); //dead
     //console.log(game.computeCellNextState(3, 3)); //live
     console.log(game.computeNextGeneration());
+    //console.warn(game.printNextGeneration());
 
 });
