@@ -41,10 +41,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         /** Pointing a given cell with the x and y coordinates */
 
-        this.position = function (x,y) {
-           let index = x + y * this.width;
-           return this.cells[index];
+        this.position = function (x, y) {
+            let index = x + y * this.width;
+            return this.cells[index];
         };
+
+        /** Defining the initial state */
+
+        this.setCellState = function (x, y, state) {
+
+            if (state === 'live') {
+                this.position(x, y).classList.add(state);
+            } else {
+                this.position(x, y).classList.remove('live');
+            }
+
+        };
+
+        this.firstGlider = function () {
+            this.setCellState(3, 1, 'live');
+            this.setCellState(3, 2, 'live');
+            this.setCellState(3, 3, 'live');
+            this.setCellState(2, 3, 'live');
+            this.setCellState(1, 2, 'live');
+        }
 
 
     }
@@ -52,5 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let game = new GameOfLife(10, 10);
     game.createBoard();
     //console.log(game.position(1,1));
+    game.firstGlider();
 
 });
