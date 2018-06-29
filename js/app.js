@@ -73,41 +73,41 @@ document.addEventListener('DOMContentLoaded', () => {
             let live = 0;
 
             if (this.position(x - 1, y + 1).classList.contains('live')) {
-                console.log('1');
+                //console.log('1');
                 live++;
             }
             if (this.position(x, y - 1).classList.contains('live')) {
-                console.log('2');
+                //console.log('2');
                 live++;
             }
             if (this.position(x + 1, y + 1).classList.contains('live')) {
-                console.log('3');
+                //console.log('3');
                 live++;
             }
 
             if (this.position(x - 1, y).classList.contains('live')) {
-                console.log('4');
+                //console.log('4');
                 live++;
             }
             if (this.position(x + 1, y).classList.contains('live')) {
-                console.log('5');
+                //console.log('5');
                 live++;
             }
 
             if (this.position(x - 1, y - 1).classList.contains('live')) {
-                console.log('6');
+                //console.log('6');
                 live++;
             }
             if (this.position(x, y + 1).classList.contains('live')) {
-                console.log('7');
+                //console.log('7');
                 live++;
             }
             if (this.position(x + 1, y - 1).classList.contains('live')) {
-                console.log('8');
+                //console.log('8');
                 live++;
             }
 
-            console.warn(live);
+            //console.warn(live);
 
             if (this.position(x, y).classList.contains('live')) {
 
@@ -127,6 +127,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
             }
 
+        };
+
+        /** Generating the future appearance of our board */
+
+        this.computeNextGeneration = function () {
+
+            let stateFutureBoard = [];
+
+            for (let i = 0; i < boardHeight; i++) {
+
+                for (let j = 0; j < boardWidth; j++) {
+
+                    if (i !== 0 && j !== 0 && i !== this.width - 1 && j !== this.height - 1) {
+                        let newState = this.computeCellNextState(j, i);
+                        stateFutureBoard.push(newState)
+                    } else {
+                        stateFutureBoard.push(0)
+                    }
+
+                }
+
+            }
+
+            return stateFutureBoard;
 
         }
 
@@ -139,7 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
     game.firstGlider();
     //game.computeCellNextState(2, 2);
     //console.log(game.computeCellNextState(1,1));
-    console.log(game.computeCellNextState(2, 2)); //dead
-    console.log(game.computeCellNextState(3, 3)); //live
+    //console.log(game.computeCellNextState(2, 2)); //dead
+    //console.log(game.computeCellNextState(3, 3)); //live
+    console.log(game.computeNextGeneration());
 
 });
