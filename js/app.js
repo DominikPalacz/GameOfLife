@@ -189,22 +189,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let playBtn = document.getElementById('play');
         let pauseBtn = document.getElementById('pause');
-
-
+        let self = this;
 
 
         playBtn.addEventListener('click', function () {
             intervalId = setInterval(() => {
-                game.printNextGeneration()
+                self.printNextGeneration();
+                // console.warn(this)
+                // console.warn(self)
             }, 500)
         });
 
         pauseBtn.addEventListener('click',function () {
             clearInterval(intervalId);
+            //console.log(this)
         })
     }
 
-    let game = new GameOfLife(10, 10);
+    let game = new GameOfLife(50, 50);
     game.createBoard();
     //console.log(game.position(1,1));
     game.firstGlider();
