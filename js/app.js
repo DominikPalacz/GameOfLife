@@ -170,20 +170,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
             }
 
-            console.log(nextDisplay)
+            //console.log(nextDisplay)
 
         };
 
         // test ;) Don't Worry, Be Happy
-        let playTest = document.getElementById('play');
 
-        playTest.addEventListener('click', function () {
-            //e.preventDefault();
-            console.log('click');
-            game.printNextGeneration()
+        // let playTest = document.getElementById('play');
+        //
+        // playTest.addEventListener('click', function () {
+        //     //e.preventDefault();
+        //     console.log('click');
+        //     game.printNextGeneration()
+        // });
+
+
+        /** play and pause buttons */
+
+        let playBtn = document.getElementById('play');
+        let pauseBtn = document.getElementById('pause');
+
+
+
+
+        playBtn.addEventListener('click', function () {
+            intervalId = setInterval(() => {
+                game.printNextGeneration()
+            }, 500)
+        });
+
+        pauseBtn.addEventListener('click',function () {
+            clearInterval(intervalId);
         })
-
-
     }
 
     let game = new GameOfLife(10, 10);
@@ -194,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //console.log(game.computeCellNextState(1,1));
     //console.log(game.computeCellNextState(2, 2)); //dead
     //console.log(game.computeCellNextState(3, 3)); //live
-    console.log(game.computeNextGeneration());
+    //console.log(game.computeNextGeneration());
     //console.warn(game.printNextGeneration());
 
 });
