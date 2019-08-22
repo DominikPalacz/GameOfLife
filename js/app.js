@@ -1,12 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  document.getElementById('pause').classList.add('hidden');
+  let playBtn = document.getElementById('play');
+  let pauseBtn = document.getElementById('pause');
 
   /** Creating a game start object */
 
+  let isCreateBoard = false;
+  const createBoardButton = document.getElementById('start');
+  const resetButton = document.getElementById('reset');
+  const startBox = document.getElementById('start-box');
 
+  createBoardButton.addEventListener('click', () => {
+    isCreateBoard = true;
+    let boardWidth = document.getElementById('size').value;
 
-  /** Creating a game management object */
+    if (isCreateBoard) {
+      let game = new GameOfLife(boardWidth, boardWidth);
+      game.createBoard();
+      game.firstGlider();
+      startBox.classList.add('hidden');
+    }
+
+    [playBtn, resetButton].forEach(e => e.classList.remove('hidden'));
+  })
+
+  resetButton.addEventListener('click', () => {
+    location.reload();
+  });
+
+  /**  Creating a game management object */
 
   function GameOfLife(boardWidth, boardHeight) {
 
@@ -14,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     this.height = boardHeight;
 
     /** Building a board */
-
     this.board = document.getElementById('board');
     this.cells = [];
 
@@ -167,20 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /** play and pause buttons */
-
-    let playBtn = document.getElementById('play');
-    let pauseBtn = document.getElementById('pause');
     let self = this;
-
 
     playBtn.addEventListener('click', function () {
       intervalId = setInterval(() => {
         self.printNextGeneration();
       }, 500)
-      console.log('playBtn :', playBtn);
       playBtn.classList.add('hidden');
       pauseBtn.classList.remove('hidden');
-      console.warn('playBtn :', playBtn);
     });
 
     pauseBtn.addEventListener('click', function () {
@@ -190,7 +205,4 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  let game = new GameOfLife(10, 10);
-  game.createBoard();
-  game.firstGlider();
 });

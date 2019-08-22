@@ -10,11 +10,19 @@
 
 <body>
   <div class="flex-container">
+    <section id="reset-box">
+      <button class="hidden" id="reset">New game</button>
+    </section>
+    <section id="start-box">
+      <h1>Choice board game size</h1>
+      <input id="size" type="number" value=15>
+      <button id="start">Create</button>
+    </section>
     <section id="board">
     </section>
     <section id="game-set">
-      <button id="play">Start</button>
-      <button id="pause">Pause</button>
+      <button class="hidden" id="play">Start</button>
+      <button class="hidden" id="pause">Pause</button>
     </section>
   </div>
 </body>
