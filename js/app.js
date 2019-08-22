@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-//console.log('DOM fully loaded and parsed');
 
     /** Creating a game management object */
 
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         /** Building a board */
 
         this.board = document.getElementById('board');
-        //console.log(board);
         this.cells = [];
 
         this.createBoard = function () {
@@ -20,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.board.style.height = (this.height * 10) + 'px';
 
             let nrAllDiv = this.width * this.height;
-            //console.log(nrAllDiv);
 
             for (let i = nrAllDiv; i > 0; i--) {
                 let div = document.createElement('div');
@@ -37,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         };
-        //console.log(this.cells)
 
         /** Pointing a given cell with the x and y coordinates */
 
@@ -73,41 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
             let live = 0;
 
             if (this.position(x - 1, y + 1).classList.contains('live')) {
-                //console.log('1');
                 live++;
             }
             if (this.position(x, y - 1).classList.contains('live')) {
-                //console.log('2');
                 live++;
             }
             if (this.position(x + 1, y + 1).classList.contains('live')) {
-                //console.log('3');
                 live++;
             }
 
             if (this.position(x - 1, y).classList.contains('live')) {
-                //console.log('4');
                 live++;
             }
             if (this.position(x + 1, y).classList.contains('live')) {
-                //console.log('5');
                 live++;
             }
 
             if (this.position(x - 1, y - 1).classList.contains('live')) {
-                //console.log('6');
                 live++;
             }
             if (this.position(x, y + 1).classList.contains('live')) {
-                //console.log('7');
                 live++;
             }
             if (this.position(x + 1, y - 1).classList.contains('live')) {
-                //console.log('8');
                 live++;
             }
 
-            //console.warn(live);
+
 
             if (this.position(x, y).classList.contains('live')) {
 
@@ -170,20 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             }
 
-            //console.log(nextDisplay)
-
         };
-
-        // test ;) Don't Worry, Be Happy
-
-        // let playTest = document.getElementById('play');
-        //
-        // playTest.addEventListener('click', function () {
-        //     //e.preventDefault();
-        //     console.log('click');
-        //     game.printNextGeneration()
-        // });
-
 
         /** play and pause buttons */
 
@@ -195,12 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
         playBtn.addEventListener('click', function () {
             intervalId = setInterval(() => {
                 self.printNextGeneration();
-                // console.warn(this)
-                // console.warn(self)
             }, 500)
         });
 
-        pauseBtn.addEventListener('click',function () {
+        pauseBtn.addEventListener('click', function () {
             clearInterval(intervalId);
             //console.log(this)
         })
@@ -208,13 +181,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let game = new GameOfLife(50, 50);
     game.createBoard();
-    //console.log(game.position(1,1));
     game.firstGlider();
-    //game.computeCellNextState(2, 2);
-    //console.log(game.computeCellNextState(1,1));
-    //console.log(game.computeCellNextState(2, 2)); //dead
-    //console.log(game.computeCellNextState(3, 3)); //live
-    //console.log(game.computeNextGeneration());
-    //console.warn(game.printNextGeneration());
-
 });
